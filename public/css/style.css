@@ -33,3 +33,11 @@
     .header-shoppingcart-icon {
         color: #ffffff;
     }
+
+    .delete-comment {
+        display: inline-block;
+    }
+
+    .pic {
+        height: 100px;
+    }

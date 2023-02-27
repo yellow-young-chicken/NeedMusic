@@ -42,12 +42,15 @@
             @foreach ($post->comments()->latest()->get() as $comment)
                  <li>
                      {{ $comment->body }}
+                     <p>投稿'{{ $comment->user->name }}'さん</p>
+                     @if(Auth::id() === $comment->user_id)
                      <form method="post" action="{{ route('comments.destroy', $comment) }}" class="delete-comment">
                         @method('DELETE')
                         @csrf
+                        <button class="btn btn-outline-danger">削除</button>
 
-                        <button class="btn">[x]</button>
                     </form>
+                    @endif
                  </li>
              @endforeach
          </ul>

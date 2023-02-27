@@ -2,10 +2,10 @@
 
 @section('title', '投稿一覧')
 
-<div>
-    <form action="{{ route('posts.index') }}" method="GET">
+<div class="mx-auto" style="width: 200px;">
+    <form action="{{ route('posts.index') }}" method="GET" >
       <input type="text" name="keyword" value="{{ $keyword }}">
-      <input type="submit" value="検索">
+      <input type="submit" value="検索" class="btn btn-primary">
     </form>
 </div>
 
@@ -16,7 +16,7 @@
     @endif
 
     <div class="mb-2">
-        <a href="{{ route('posts.create') }}" class="text-decoration-none">新規投稿</a>
+        <a href="{{ route('posts.create') }}" class="btn btn-primary">新規投稿</a>
     </div>
 
     @foreach($posts as $post)
@@ -24,6 +24,7 @@
             <div class="card-body">
                 <h2 class="card-title fs-5">{{ $post->title }}</h2>
                 <p class="card-text">{{ $post->content }}</p>
+                <p>投稿'{{ $post->user->name }}'さん</p>
 
                 <div class="d-flex">
                     <a href="{{ route('posts.show', $post) }}" class="btn btn-outline-primary d-block me-1">詳細</a>
