@@ -2,6 +2,14 @@
 
 @section('title', '投稿一覧')
 
+<div>
+    <form action="{{ route('posts.index') }}" method="GET">
+      <input type="text" name="keyword" value="{{ $keyword }}">
+      <input type="submit" value="検索">
+    </form>
+</div>
+
+
 @section('content')
     @if (session('flash_message'))
         <p class="text-success">{{ session('flash_message') }}</p>
@@ -27,7 +35,9 @@
                         <button type="submit" class="btn btn-outline-danger">削除</button>
                     </form> --}}
                 </div>
+
             </div>
+            {{-- {{ $posts->links() }} --}}
         </div>
     @endforeach
 @endsection

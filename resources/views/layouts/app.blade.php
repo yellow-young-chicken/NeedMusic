@@ -20,6 +20,8 @@
 <body style="padding: 60px 0;">
     <div id="app">
         @include('layouts.header')
+        {{-- @component('components.header')
+        @endcomponent --}}
         <main>
             <article>
                 <div class="container">

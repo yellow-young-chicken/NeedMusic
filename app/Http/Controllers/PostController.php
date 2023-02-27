@@ -8,10 +8,23 @@ use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller {
 
-    public function index() {
-        $posts = Post::latest()->get();
+    public function index(Request $request) {
+        // $posts = Post::latest()->get();
+        // $posts = Post::paginate(5);
+        // return view('posts.index', compact('posts'));
+        $keyword = $request->input('keyword');
 
-        return view('posts.index', compact('posts'));
+        $query = Post::query();
+
+        if(!empty($keyword)) {
+            $query->where('title', 'LIKE', "%{$keyword}%")
+                ->orWhere('content', 'LIKE', "%{$keyword}%")
+                ->orderBy("id","desc");
+        }
+
+        $posts = $query->get();
+
+        return view('posts.index', compact('posts', 'keyword'));
     }
 
      public function create() {

@@ -15,8 +15,10 @@
          <div class="card-body">
              <h2 class="card-title fs-5">{{ $post->title }}</h2>
              <p class="card-text">{{ $post->content }}</p>
+             <p>投稿'{{ $post->user->name }}'さん</p>
 
              <div class="d-flex">
+                @if(Auth::id() === $post->user_id)
                  <a href="{{ route('posts.edit', $post) }}" class="btn btn-outline-primary d-block me-1">編集</a>
 
                  <form action="{{ route('posts.destroy', $post) }}" method="post" id="delete_post">
@@ -24,6 +26,7 @@
                      @method('delete')
                      <button type="submit" class="btn btn-outline-danger">削除</button>
                  </form>
+                @endif
              </div>
          </div>
          <h3>Comments</h3>
